@@ -18,7 +18,7 @@ behaviors:
       extrinsic:
         gamma: 0.995
         strength: 1.0
-    max_steps: 5.0e4
+    max_steps: 10.0e5
     time_horizon: 1000
     summary_freq: 5000
   Fighter:
@@ -40,6 +40,6 @@ behaviors:
       extrinsic:
         gamma: 0.995
         strength: 1.0
-    max_steps: 5.0e4
+    max_steps: 10.0e5
     time_horizon: 1000
     summary_freq: 5000
