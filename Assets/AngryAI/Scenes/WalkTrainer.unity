@@ -179,7 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5e9b8e85b61f84ea29af511a09fc20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 157690, guid: d93ec03b51f37fd4d905a60a08a4fbbc, type: 3}
+  obstacle: {fileID: 5925931271196941029, guid: 296c12e93c04a144a9559a9db9e2cee7,
+    type: 3}
   ground: {fileID: 139200206}
 --- !u!1001 &158702447
 PrefabInstance:
@@ -672,6 +673,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccec90ddabc46204989cf753d95f618e, type: 3}
+--- !u!1 &790632474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6928247203248955068, guid: ccec90ddabc46204989cf753d95f618e,
+    type: 3}
+  m_PrefabInstance: {fileID: 774502695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &790632480
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790632474}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3948822, y: 0.42546654, z: 2.3024006}
+  m_Center: {x: 0.11217499, y: 0.08750057, z: -0.124445915}
 --- !u!1 &795850217 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 154626332744882240, guid: ccec90ddabc46204989cf753d95f618e,

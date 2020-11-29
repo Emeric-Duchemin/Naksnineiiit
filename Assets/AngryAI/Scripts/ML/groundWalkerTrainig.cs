@@ -23,7 +23,7 @@ public class groundWalkerTrainig : MonoBehaviour
         int nbObstacle = Random.Range(5, 30);
         for(int i = 0; i < nbObstacle; i++)
         {
-            Instantiate(obstacle, new Vector3(generateNormalRandom(ground.transform.position.x, 25), 0, generateNormalRandom(ground.transform.position.z, 25)), Quaternion.identity);
+            Instantiate(obstacle, new Vector3(generateNormalRandom(ground.transform.position.x, 25), -0.5f, generateNormalRandom(ground.transform.position.z, 25)), Quaternion.identity);
             obstacle.transform.localScale = new Vector3(2f, 5f, 2f); 
         }
     }
