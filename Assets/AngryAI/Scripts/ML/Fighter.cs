@@ -11,6 +11,8 @@ namespace MBaske.AngryAI
         protected BodyFighter body;
         [SerializeField]
         protected Head head;
+       
+        public int life;
 
         protected bool hasTargetLock;
 
@@ -19,6 +21,10 @@ namespace MBaske.AngryAI
         private float[] actionsBuffer;
         private const int nActions = 6;
 
+        private void Start()
+        {
+            life = 10;
+        }
         public override void InitializeAgent()
         {
             interval = agentParameters.numberOfActionsBetweenDecisions;
@@ -93,6 +99,19 @@ namespace MBaske.AngryAI
 
         protected virtual void OnBulletCollision(Collision other)
         {
+
+            if (other.gameObject.CompareTag("Body"))
+            {
+                if (this.life <= 0)
+                {
+                    other.transform.parent.transform.parent.transform.parent.gameObject.SetActive(false);
+                }
+                else
+                {
+                    this.life--;
+                }
+            }
+
         }
     }
 }
