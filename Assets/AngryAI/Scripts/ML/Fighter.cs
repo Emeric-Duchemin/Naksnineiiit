@@ -103,13 +103,14 @@ namespace MBaske.AngryAI
 
             if (other.gameObject.CompareTag("Body"))
             {
-                if (this.life <= 0)
+                Fighter target = other.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<Fighter>();
+                if (target.life <= 0)
                 {
                     other.transform.parent.transform.parent.transform.parent.gameObject.SetActive(false);
                 }
                 else
                 {
-                    this.life--;
+                    target.life--;
                 }
             }
 
