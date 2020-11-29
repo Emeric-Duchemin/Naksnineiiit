@@ -6,10 +6,10 @@ using MBaske.AngryAI;
 
 public class HealthBar : MonoBehaviour
 {
-    [Header("Camera to be aligned to :")]
-    public Camera mainCamera;
+    private Fighter fighter;
 
-    private Fighter fighter; 
+    //[Header("Camera to align for shader rendering :")]
+    Camera mainCamera;
 
     MaterialPropertyBlock matBlock;
     MeshRenderer meshRenderer;
@@ -24,23 +24,25 @@ public class HealthBar : MonoBehaviour
     {
         // Cache since Camera.main is super slow
         mainCamera = Camera.main;
-        fighter = transform.parent.gameObject.transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<Fighter>();
+        fighter = transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<Fighter>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-
-        int a = 3;
-        if (fighter.life <= 10)
+        /*
+        if (fighter.life < 10)
         {
-            meshRenderer.enabled = true;
-            AlignCamera();
-            UpdateParams();
+            */
+        meshRenderer.enabled = true;
+        AlignCamera();
+        UpdateParams();
+            /*
         }
         else
         {
             meshRenderer.enabled = false;
         }
+        */
     }
 
     private void UpdateParams()
