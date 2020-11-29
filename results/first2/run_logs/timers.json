@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1606662654",
+        "python_version": "3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\revok\\AppData\\Local\\Programs\\Python\\Python38\\Scripts\\mlagents-learn config/trainer_config.yaml --run-id=first2",
+        "mlagents_version": "0.21.0",
+        "mlagents_envs_version": "0.21.0",
+        "communication_protocol_version": "1.2.0",
+        "tensorflow_version": "2.3.1",
+        "numpy_version": "1.18.5",
+        "end_time_seconds": "1606662661"
+    },
+    "total": 7.9291418,
+    "count": 1,
+    "self": 0.0338105999999998,
+    "children": {
+        "run_training.setup": {
+            "total": 0.016310299999999778,
+            "count": 1,
+            "self": 0.016310299999999778
+        },
+        "TrainerController.start_learning": {
+            "total": 7.8790209,
+            "count": 1,
+            "self": 0.0006606000000006773,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 7.8768161,
+                    "count": 1,
+                    "self": 7.8768161
+                },
+                "trainer_threads": {
+                    "total": 1.300000000981072e-06,
+                    "count": 1,
+                    "self": 1.300000000981072e-06
+                },
+                "TrainerController._save_models": {
+                    "total": 0.0015428999999986814,
+                    "count": 1,
+                    "self": 0.0015428999999986814
+                }
+            }
+        }
+    }
+}

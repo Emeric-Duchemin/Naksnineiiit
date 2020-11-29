@@ -1,0 +1,23 @@
+{
+    "Fighter": {
+        "checkpoints": [
+            {
+                "steps": 54009,
+                "file_path": "results\\first4\\Fighter\\Fighter-54009.nn",
+                "reward": -163.46054465240903,
+                "creation_time": 1606663055.7904117
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 54009,
+            "file_path": "results\\first4\\Fighter.nn",
+            "reward": -163.46054465240903,
+            "creation_time": 1606663055.7904117
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}
