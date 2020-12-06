@@ -10,6 +10,7 @@ namespace MBaske.AngryAI
         public GameObject ground;
         public Transform target;
         public BodyWalker body;
+        private float diam = 7f;
 
         List<Vector3> positions = new List<Vector3>();
 
@@ -36,7 +37,6 @@ namespace MBaske.AngryAI
         // Start is called before the first frame update
         void Start()
         {
-            float diam = 7f;
             int nbObstacle = Random.Range(10, 20);
             for (int i = 0; i < nbObstacle; i++)
             {
@@ -76,9 +76,22 @@ namespace MBaske.AngryAI
 
         private void RandomizeTarget()
         {
-            Vector3 pos = Random.onUnitSphere * 40;
-            pos.y = 0;
-            target.transform.localPosition = pos;
+            bool possible = false;
+            while (!possible)
+            {
+                Vector3 pos = Random.onUnitSphere * 40;
+                pos.y = 0;
+                for (int j = 0; j < positions.Count; j++)
+                {
+                    float d = (pos - positions[j]).magnitude;
+                    if (d < 10)
+                    {
+                        continue;
+                    }
+                }
+                target.transform.localPosition = pos;
+                possible = true;
+            }
         }
     }
 }
