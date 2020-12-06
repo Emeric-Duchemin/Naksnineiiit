@@ -8,7 +8,6 @@ namespace MBaske.AngryAI
     {
         [SerializeField]
         private Transform target;
-
         public override void InitializeAgent()
         {
             base.InitializeAgent();
@@ -30,20 +29,24 @@ namespace MBaske.AngryAI
 
             if (!IsDone())
             {
+                base.reward = 0f;
                  // Minimize angle -> face walk direction.
                 AddReward(-Mathf.Abs(normWalkDir));
-
+                base.reward += -Mathf.Abs(normWalkDir);
                 float speed = Vector3.Dot(body.VelocityXZ, dirXZ) * 0.1f;
                 switch (walkMode)
                 {
                     case 1:
                         AddReward(speed); // forward
+                        base.reward += speed;
                         break;
                     case -1:
                         AddReward(-speed); // backward
+                        base.reward += -speed;
                         break;
                     case 0:
                         AddReward(-Mathf.Abs(speed)); // pause
+                        base.reward += -Mathf.Abs(speed);
                         break;
                 }
             }
