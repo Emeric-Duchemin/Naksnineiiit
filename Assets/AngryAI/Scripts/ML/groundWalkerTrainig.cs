@@ -37,6 +37,7 @@ namespace MBaske.AngryAI
         // Start is called before the first frame update
         void Start()
         {
+            RandomizeTarget();
             int nbObstacle = Random.Range(10, 20);
             for (int i = 0; i < nbObstacle; i++)
             {
