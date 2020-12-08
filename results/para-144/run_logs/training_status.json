@@ -1,0 +1,24 @@
+{
+    "Walker": {
+        "checkpoints": [
+            {
+                "steps": 288204,
+                "file_path": "results\\para-144\\Walker\\Walker-288204.onnx",
+                "reward": -342.5866889953613,
+                "creation_time": 1607265990.3539352
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 288204,
+            "file_path": "results\\para-144\\Walker.onnx",
+            "reward": -342.5866889953613,
+            "creation_time": 1607265990.3539352
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.22.0",
+        "torch_version": "1.7.0+cu110",
+        "tensorflow_version": "2.3.1"
+    }
+}

@@ -47,6 +47,12 @@ namespace MBaske.AngryAI
                         break;
                 }
             }
+            else
+            {
+                // Adaptatif en fonction de la durée de l'épisode
+                // Obtenir des données statistiques sur les epochs : longueur du circuit...
+                AddReward(5f); // checker l'ordre de grandeur des différentes rewards
+            }
         }
     }
 }
