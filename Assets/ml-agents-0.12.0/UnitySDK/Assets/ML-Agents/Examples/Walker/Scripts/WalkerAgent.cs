@@ -160,7 +160,6 @@ public class WalkerAgent : Agent
             - 0.01f * Vector3.Distance(m_JdController.bodyPartsDict[head].rb.velocity,
                 m_JdController.bodyPartsDict[hips].rb.velocity)
             //- 0.5f * Vector3(m_dirToObstacle.normalized, m_JdController.bodyPartsDict[hips].rb.velocity)
-            // DISTANCE / TIME REWARD
         );
     }
 
