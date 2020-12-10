@@ -8,6 +8,7 @@ namespace MBaske.AngryAI
     {
         [SerializeField]
         private Transform target;
+
         public override void InitializeAgent()
         {
             base.InitializeAgent();
@@ -16,6 +17,7 @@ namespace MBaske.AngryAI
         public override void AgentReset()
         {
             base.AgentReset();
+            RandomizeTarget();
             walkMode = Random.Range(-1, 2);
         }
 
@@ -53,7 +55,19 @@ namespace MBaske.AngryAI
                         base.reward += -Mathf.Abs(speed);
                         break;
                 }
+
+                if (delta.sqrMagnitude < 25)
+                {
+                    RandomizeTarget();
+                }
             }
+        }
+
+        private void RandomizeTarget()
+        {
+            Vector3 pos = Random.onUnitSphere * 40;
+            pos.y = 0;
+            target.transform.localPosition = pos;
         }
     }
 }
