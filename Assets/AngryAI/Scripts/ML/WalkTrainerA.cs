@@ -30,22 +30,26 @@ namespace MBaske.AngryAI
             if (!IsDone())
             {
                 base.reward = 0f;
-                 // Minimize angle -> face walk direction.
+                // Minimize angle -> face walk direction.
+                base.reward_angle += -Mathf.Abs(normWalkDir);
+                base.reward += -Mathf.Abs(normWalkDir); 
                 AddReward(-Mathf.Abs(normWalkDir));
-                base.reward += -Mathf.Abs(normWalkDir);
                 float speed = Vector3.Dot(body.VelocityXZ, dirXZ) * 0.1f;
                 switch (walkMode)
                 {
                     case 1:
                         AddReward(speed); // forward
+                        base.reward_speed_f += speed;
                         base.reward += speed;
                         break;
                     case -1:
                         AddReward(-speed); // backward
+                        base.reward_speed_b += -speed;
                         base.reward += -speed;
                         break;
                     case 0:
                         AddReward(-Mathf.Abs(speed)); // pause
+                        base.reward_speed_p += -Mathf.Abs(speed);
                         base.reward += -Mathf.Abs(speed);
                         break;
                 }

@@ -22,6 +22,10 @@ namespace MBaske.AngryAI
         protected Fighter fighter;
 
         public float reward = 0f;
+        protected float reward_angle = 0f;
+        protected float reward_speed_f = 0f;
+        protected float reward_speed_b = 0f;
+        protected float reward_speed_p = 0f;
         [SerializeField]
         protected BodyWalker body;
 
@@ -44,6 +48,30 @@ namespace MBaske.AngryAI
 
         public override void AgentReset()
         {
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(Application.dataPath + @"\plot\speed_f.txt", true))
+            {
+                file.WriteLine(reward_speed_f);
+            }
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(Application.dataPath + @"\plot\speed_b.txt", true))
+            {
+                file.WriteLine(reward_speed_b);
+            }
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(Application.dataPath + @"\plot\speed_p.txt", true))
+            {
+                file.WriteLine(reward_speed_p);
+            }
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(Application.dataPath + @"\plot\angle.txt", true))
+            {
+                file.WriteLine(reward_angle);
+            }
+            this.reward_angle = 0f;
+            this.reward_speed_b = 0f;
+            this.reward_speed_f = 0f;
+            this.reward_speed_p = 0f;
             walkMode = 0;
             normWalkDir = 0;
             System.Array.Clear(actionsLerp, 0, nActions);
