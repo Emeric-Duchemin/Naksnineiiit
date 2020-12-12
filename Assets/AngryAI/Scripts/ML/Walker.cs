@@ -21,7 +21,6 @@ namespace MBaske.AngryAI
         [SerializeField]
         protected Fighter fighter;
 
-
         public float reward = 0f;
         protected float reward_angle = 0f;
         protected float reward_speed_f = 0f;

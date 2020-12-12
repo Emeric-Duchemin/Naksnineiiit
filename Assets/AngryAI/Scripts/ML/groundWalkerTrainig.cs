@@ -2,35 +2,97 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class groundWalkerTrainig : MonoBehaviour
+namespace MBaske.AngryAI
 {
-    public GameObject obstacle;
-    public GameObject ground;
-
-    public static float generateNormalRandom(float mu, float sigma)
+    public class groundWalkerTrainig : MonoBehaviour
     {
-        float rand1 = Random.Range(0.0f, 1.0f);
-        float rand2 = Random.Range(0.0f, 1.0f);
+        public GameObject obstacle;
+        public GameObject ground;
+        public Transform target;
+        public BodyWalker body;
+        private float diam = 7f;
 
-        float n = Mathf.Sqrt(-2.0f * Mathf.Log(rand1)) * Mathf.Cos((2.0f * Mathf.PI) * rand2);
+        List<Vector3> positions = new List<Vector3>();
 
-        return (mu + sigma * n);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        int nbObstacle = Random.Range(5, 30);
-        for(int i = 0; i < nbObstacle; i++)
+        public static float generateNormalRandom(float mu, float sigma)
         {
-            Instantiate(obstacle, new Vector3(generateNormalRandom(ground.transform.position.x, 25), -0.5f, generateNormalRandom(ground.transform.position.z, 25)), Quaternion.identity);
-            obstacle.transform.localScale = new Vector3(2f, 5f, 2f); 
-        }
-    }
+            float rand1 = Random.Range(0.0f, 1.0f);
+            float rand2 = Random.Range(0.0f, 1.0f);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            float n = Mathf.Sqrt(-2.0f * Mathf.Log(rand1)) * Mathf.Cos((2.0f * Mathf.PI) * rand2);
+
+            float res = (mu + sigma * n);
+            while (res > mu + sigma && res < mu + sigma)
+            {
+                rand1 = Random.Range(0.0f, 1.0f);
+                rand2 = Random.Range(0.0f, 1.0f);
+
+                n = Mathf.Sqrt(-2.0f * Mathf.Log(rand1)) * Mathf.Cos((2.0f * Mathf.PI) * rand2);
+
+                res = (mu + sigma * n);
+            }
+            return res;
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            RandomizeTarget();
+            int nbObstacle = Random.Range(10, 20);
+            for (int i = 0; i < nbObstacle; i++)
+            {
+                Vector3 v = new Vector3(generateNormalRandom(ground.transform.position.x, 25), -0.5f, generateNormalRandom(ground.transform.position.z, 25));
+                bool possible = true;
+                for (int j = 0; j < positions.Count; j++)
+                {
+                    float d = (v - positions[j]).magnitude;
+                    if (d > diam && d < (diam * 2))
+                    {
+                        Debug.Log(d);
+                        possible = false;
+                    }
+                }
+                if (possible)
+                {
+                    positions.Add(v);
+                    GameObject instan = Instantiate(obstacle, v, Quaternion.identity);
+                    instan.transform.localScale = new Vector3(2f, 5f, 2f);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            Vector3 delta = target.position - body.transform.position;
+            if (delta.sqrMagnitude < 25)
+            {
+                RandomizeTarget();
+            }
+        }
+
+        private void RandomizeTarget()
+        {
+            bool possible = false;
+            while (!possible)
+            {
+                Vector3 pos = Random.onUnitSphere * 40;
+                pos.y = 0;
+                for (int j = 0; j < positions.Count; j++)
+                {
+                    float d = (pos - positions[j]).magnitude;
+                    if (d < 10)
+                    {
+                        continue;
+                    }
+                }
+                target.transform.localPosition = pos;
+                possible = true;
+            }
+        }
     }
 }

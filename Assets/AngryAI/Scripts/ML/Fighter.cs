@@ -14,6 +14,7 @@ namespace MBaske.AngryAI
         protected Head head;
        
         public int life;
+        public float reward = 0;
 
         protected bool hasTargetLock;
 
