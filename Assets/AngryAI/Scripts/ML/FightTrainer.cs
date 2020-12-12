@@ -7,6 +7,7 @@ namespace MBaske.AngryAI
     {
         private Queue<Vector3> path;
         private const string bodyTag = "Body";
+
         public override void InitializeAgent()
         {
             base.InitializeAgent();
@@ -24,24 +25,21 @@ namespace MBaske.AngryAI
             base.CollectObservations();
 
             float pathLength = UpdatePath();
-            base.reward = 0f;
+
             if (hasTargetLock)
             {
                 AddReward(1f);
-                base.reward += 1f;
             }
             else
             {
                 // Motivate agent to move around while it isn't targeting opponents.
                 AddReward(pathLength * 0.25f);
-                base.reward += pathLength * 0.25f;
             }
 
             // Penalize proximity, bot should not run into stuff.
             AddReward(body.CumlProximity * -0.1f);
             // Penalize falling over.
             AddReward(body.transform.up.y - 1f);
-            base.reward += body.transform.up.y - 1f + body.CumlProximity * -0.1f;
         }
 
         protected override void OnBulletCollision(Collision other)
@@ -49,13 +47,12 @@ namespace MBaske.AngryAI
             if (other.collider.CompareTag(bodyTag))
             {
                 AddReward(0.5f);
-                base.reward += 0.5f;
+
                 BodyFighter opponentBody = other.collider.GetComponent<BodyFighter>();
                 opponentBody.Owner.AddReward(-0.25f);
             }
             else
             {
-                base.reward += -0.5f;
                 AddReward(-0.5f);
             }
         }
