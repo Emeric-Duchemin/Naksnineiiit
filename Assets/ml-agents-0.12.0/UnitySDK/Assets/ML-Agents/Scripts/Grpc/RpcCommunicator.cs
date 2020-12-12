@@ -321,13 +321,9 @@ namespace MLAgents
                 for (var i = 0; i < numAgents; i++)
                 {
                     var agent = m_CurrentAgents[brainName][i];
-                    if(i < agentActions.Count)
-                    {
-                        var agentAction = agentActions[i];
-                        agentActionDict[agent] = agentAction;
-                        agent.UpdateAgentAction(agentAction);
-                    }
-                    
+                    var agentAction = agentActions[i];
+                    agentActionDict[agent] = agentAction;
+                    agent.UpdateAgentAction(agentAction);
                 }
             }
         }
