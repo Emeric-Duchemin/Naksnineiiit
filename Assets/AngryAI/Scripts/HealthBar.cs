@@ -48,8 +48,10 @@ public class HealthBar : MonoBehaviour
     private void UpdateParams()
     {
         meshRenderer.GetPropertyBlock(matBlock);
-
-        matBlock.SetFloat("_Fill", (float)fighter.life / 10f);
+        if(fighter != null)
+        {
+            matBlock.SetFloat("_Fill", (float)fighter.life / 10f);
+        }
         meshRenderer.SetPropertyBlock(matBlock);
     }
 
