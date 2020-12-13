@@ -35,6 +35,12 @@ namespace MBaske.AngryAI
                 base.reward += -Mathf.Abs(normWalkDir); 
                 AddReward(-Mathf.Abs(normWalkDir));
                 float speed = Vector3.Dot(body.VelocityXZ, dirXZ) * 0.1f;
+                Vector3 delt = target.position - this.transform.position;
+                if (delt.sqrMagnitude < 25)
+                {
+                    AddReward(10f);
+                    base.reward_got_target += 10f;
+                }
                 switch (walkMode)
                 {
                     case 1:

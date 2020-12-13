@@ -26,6 +26,7 @@ namespace MBaske.AngryAI
         protected float reward_speed_f = 0f;
         protected float reward_speed_b = 0f;
         protected float reward_speed_p = 0f;
+        protected float reward_got_target = 0f;
         [SerializeField]
         protected BodyWalker body;
 
@@ -68,10 +69,16 @@ namespace MBaske.AngryAI
             {
                 file.WriteLine(reward_angle);
             }
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(Application.dataPath + @"\plot\target.txt", true))
+            {
+                file.WriteLine(reward_got_target);
+            }
             this.reward_angle = 0f;
             this.reward_speed_b = 0f;
             this.reward_speed_f = 0f;
             this.reward_speed_p = 0f;
+            this.reward_got_target = 0f;
             walkMode = 0;
             normWalkDir = 0;
             System.Array.Clear(actionsLerp, 0, nActions);
