@@ -43,9 +43,9 @@ namespace MBaske.AngryAI
             {
                 if (File.Exists(Application.dataPath + @"\plot\"+fileList[i]))
                 {
-                    Debug.Log("salut");
-                    File.Delete(Application.dataPath + @"\plot\" + fileList[i]);
-                    UnityEditor.AssetDatabase.Refresh();
+                    Debug.Log(Application.dataPath + @"/plot/" + fileList[i]);
+                    File.Delete(Application.dataPath + @"/plot/" + fileList[i]);
+                    //UnityEditor.AssetDatabase.Refresh();
                 }
             }
             RandomizeTarget();
