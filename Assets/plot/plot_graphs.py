@@ -8,7 +8,7 @@ Created on Thu Dec 10 18:23:32 2020
 import numpy as np
 import matplotlib.pyplot as plt
 
-filelist = ["angle.txt","speed_b.txt","speed_f.txt","speed_p.txt"]
+filelist = ["angle.txt","speed_b.txt","speed_f.txt","speed_p.txt","target.txt"]
 nb_bot = 9
 max_episode = 113
 
