@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace MBaske.AngryAI
 {
@@ -37,6 +38,16 @@ namespace MBaske.AngryAI
         // Start is called before the first frame update
         void Start()
         {
+            string[] fileList = { "target.txt", "speed_f.txt", "speed_b.txt", "speed_p.txt", "angle.txt" };
+            for (int i = 0; i < fileList.Length; ++i)
+            {
+                if (File.Exists(Application.dataPath + @"\plot\"+fileList[i]))
+                {
+                    Debug.Log("salut");
+                    File.Delete(Application.dataPath + @"\plot\" + fileList[i]);
+                    UnityEditor.AssetDatabase.Refresh();
+                }
+            }
             RandomizeTarget();
             int nbObstacle = Random.Range(10, 20);
             for (int i = 0; i < nbObstacle; i++)
