@@ -12,6 +12,7 @@ namespace MBaske.AngryAI
         public Transform target;
         public BodyWalker body;
         private float diam = 7f;
+        public bool straight_line = false;
 
         List<Vector3> positions = new List<Vector3>();
 
@@ -48,31 +49,49 @@ namespace MBaske.AngryAI
                     //UnityEditor.AssetDatabase.Refresh();
                 }
             }
-            RandomizeTarget();
-            int nbObstacle = Random.Range(10, 20);
-            for (int i = 0; i < nbObstacle; i++)
+            if (!straight_line)
             {
-                Vector3 v = new Vector3(generateNormalRandom(ground.transform.position.x, 25), -0.5f, generateNormalRandom(ground.transform.position.z, 25));
-                bool possible = true;
-                for (int j = 0; j < positions.Count; j++)
+                RandomizeTarget();
+                int nbObstacle = Random.Range(10, 20);
+                for (int i = 0; i < nbObstacle; i++)
                 {
-                    float d = (v - positions[j]).magnitude;
-                    if (d > diam && d < (diam * 2))
+                    Vector3 v = new Vector3(generateNormalRandom(ground.transform.position.x, 25), -0.5f, generateNormalRandom(ground.transform.position.z, 25));
+                    bool possible = true;
+                    for (int j = 0; j < positions.Count; j++)
                     {
-                        Debug.Log(d);
-                        possible = false;
+                        float d = (v - positions[j]).magnitude;
+                        if (d > diam && d < (diam * 2))
+                        {
+                            Debug.Log(d);
+                            possible = false;
+                        }
+                    }
+                    if (possible)
+                    {
+                        positions.Add(v);
+                        GameObject instan = Instantiate(obstacle, v, Quaternion.identity);
+                        instan.transform.localScale = new Vector3(2f, 5f, 2f);
+                    }
+                    else
+                    {
+                        i--;
                     }
                 }
-                if (possible)
-                {
-                    positions.Add(v);
-                    GameObject instan = Instantiate(obstacle, v, Quaternion.identity);
-                    instan.transform.localScale = new Vector3(2f, 5f, 2f);
-                }
-                else
-                {
-                    i--;
-                }
+            }
+            else {
+                lineaDerecha();
+            }
+        }
+
+        void lineaDerecha() {
+            for (int i = -6; i <7; ++i) {
+                Vector3 v = new Vector3(ground.transform.position.x - 10, -0.5f, ground.transform.position.z + i * 7.7f);
+                Vector3 v2 = new Vector3(ground.transform.position.x+10, -0.5f, ground.transform.position.z + i * 7.7f);
+                GameObject instan = Instantiate(obstacle, v, Quaternion.identity);
+                instan.transform.localScale = new Vector3(2f, 5f, 2f);
+                GameObject instan2 = Instantiate(obstacle, v2, Quaternion.identity);
+                instan2.transform.localScale = new Vector3(2f, 5f, 2f);
+
             }
         }
 
@@ -88,6 +107,13 @@ namespace MBaske.AngryAI
 
         private void RandomizeTarget()
         {
+            if (straight_line) {
+                if(target.transform.localPosition.z <= -30)
+                    target.transform.localPosition = new Vector3(0,0,40);
+                else
+                    target.transform.localPosition = new Vector3(0, 0, -40);
+                return;
+            }
             bool possible = false;
             while (!possible)
             {
