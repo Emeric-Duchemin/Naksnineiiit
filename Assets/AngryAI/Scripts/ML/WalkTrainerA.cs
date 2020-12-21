@@ -30,10 +30,18 @@ namespace MBaske.AngryAI
             if (!IsDone())
             {
                 base.reward = 0f;
+                if (body.transform.rotation.eulerAngles.x >= 100 && body.transform.rotation.eulerAngles.x <= 260 && (body.transform.rotation.eulerAngles.z <= 100 || body.transform.rotation.eulerAngles.z >= 260))//prevent to be upside down
+                {
+                    AddReward(-10f);
+                }
+                if (body.transform.rotation.eulerAngles.z >= 100 && body.transform.rotation.eulerAngles.z <= 260 && (body.transform.rotation.eulerAngles.x <= 100 || body.transform.rotation.eulerAngles.x >= 260))//prevent to be upside down
+                {
+                    AddReward(-10f);
+                }
                 // Minimize angle -> face walk direction.
                 base.reward_angle += -Mathf.Abs(normWalkDir);
-                base.reward += -Mathf.Abs(normWalkDir); 
-                AddReward(-Mathf.Abs(normWalkDir));
+                base.reward += -Mathf.Abs(normWalkDir);
+                AddReward(-Mathf.Abs(normWalkDir) * 0.2f);
                 float speed = Vector3.Dot(body.VelocityXZ, dirXZ) * 0.1f;
                 Vector3 delt = target.position - this.transform.position;
                 if (delt.sqrMagnitude < 25)
