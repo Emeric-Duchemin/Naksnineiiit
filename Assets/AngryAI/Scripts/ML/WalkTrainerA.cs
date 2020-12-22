@@ -16,7 +16,7 @@ namespace MBaske.AngryAI
         public override void AgentReset()
         {
             base.AgentReset();
-            walkMode = Random.Range(-1, 2);
+            walkMode = 1;
         }
 
         public override void CollectObservations()
@@ -32,16 +32,16 @@ namespace MBaske.AngryAI
                 base.reward = 0f;
                 if (body.transform.rotation.eulerAngles.x >= 100 && body.transform.rotation.eulerAngles.x <= 260 && (body.transform.rotation.eulerAngles.z <= 100 || body.transform.rotation.eulerAngles.z >= 260))//prevent to be upside down
                 {
-                    AddReward(-10f);
+                    AddReward(-1f);
                 }
                 if (body.transform.rotation.eulerAngles.z >= 100 && body.transform.rotation.eulerAngles.z <= 260 && (body.transform.rotation.eulerAngles.x <= 100 || body.transform.rotation.eulerAngles.x >= 260))//prevent to be upside down
                 {
-                    AddReward(-10f);
+                    AddReward(-1f);
                 }
                 // Minimize angle -> face walk direction.
                 base.reward_angle += -Mathf.Abs(normWalkDir);
                 base.reward += -Mathf.Abs(normWalkDir);
-                AddReward(-Mathf.Abs(normWalkDir) * 0.2f);
+                AddReward(-Mathf.Abs(normWalkDir));
                 float speed = Vector3.Dot(body.VelocityXZ, dirXZ) * 0.1f;
                 Vector3 delt = target.position - this.transform.position;
                 if (delt.sqrMagnitude < 25)
@@ -52,9 +52,9 @@ namespace MBaske.AngryAI
                 switch (walkMode)
                 {
                     case 1:
-                        AddReward(speed); // forward
-                        base.reward_speed_f += speed;
-                        base.reward += speed;
+                        AddReward(speed * 5); // forward
+                        base.reward_speed_f += speed * 5;
+                        base.reward += speed * 5;
                         break;
                     case -1:
                         AddReward(-speed); // backward
@@ -62,9 +62,7 @@ namespace MBaske.AngryAI
                         base.reward += -speed;
                         break;
                     case 0:
-                        AddReward(-Mathf.Abs(speed)); // pause
-                        base.reward_speed_p += -Mathf.Abs(speed);
-                        base.reward += -Mathf.Abs(speed);
+                        AddReward(-10f);
                         break;
                 }
             }
