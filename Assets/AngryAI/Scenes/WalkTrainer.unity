@@ -190,6 +190,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkTrainer (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 154626333988512584, guid: ccec90ddabc46204989cf753d95f618e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: e8d48924a01424a4999e5fb432d30aba,
+        type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: body
@@ -431,6 +437,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkTrainer (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 154626333988512584, guid: ccec90ddabc46204989cf753d95f618e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: e8d48924a01424a4999e5fb432d30aba,
+        type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: body
@@ -662,6 +674,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkTrainer (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 154626333988512584, guid: ccec90ddabc46204989cf753d95f618e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: e8d48924a01424a4999e5fb432d30aba,
+        type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: body
@@ -741,6 +759,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkTrainer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 154626333988512584, guid: ccec90ddabc46204989cf753d95f618e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: e8d48924a01424a4999e5fb432d30aba,
+        type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: body
@@ -851,6 +875,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkTrainer (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 154626333988512584, guid: ccec90ddabc46204989cf753d95f618e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: e8d48924a01424a4999e5fb432d30aba,
+        type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: body
@@ -966,6 +996,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkTrainer (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 154626333988512584, guid: ccec90ddabc46204989cf753d95f618e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: e8d48924a01424a4999e5fb432d30aba,
+        type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: body
@@ -1045,6 +1081,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkTrainer (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 154626333988512584, guid: ccec90ddabc46204989cf753d95f618e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: e8d48924a01424a4999e5fb432d30aba,
+        type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: body
@@ -1142,6 +1184,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkTrainer (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 154626333988512584, guid: ccec90ddabc46204989cf753d95f618e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: e8d48924a01424a4999e5fb432d30aba,
+        type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: body
@@ -1225,7 +1273,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 8c0c3c133a8ee554fa2aa416e9347115,
+      objectReference: {fileID: 5022602860645237092, guid: e8d48924a01424a4999e5fb432d30aba,
         type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
