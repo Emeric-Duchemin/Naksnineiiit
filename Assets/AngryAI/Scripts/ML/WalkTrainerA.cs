@@ -44,6 +44,14 @@ namespace MBaske.AngryAI
                 AddReward(-Mathf.Abs(normWalkDir));
                 float speed = Vector3.Dot(body.VelocityXZ, dirXZ) * 0.1f;
                 Vector3 delt = target.position - this.transform.position;
+                RaycastHit hit;
+                Physics.Raycast(body.transform.position , body.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity);
+                //Debug.DrawRay(body.transform.position, body.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                if (hit.distance < 1 && hit.collider != null && hit.collider.gameObject.tag == "Wall")
+                {
+                    Debug.Log(hit.distance);
+                    AddReward(-0.1f);
+                }
                 if (delt.sqrMagnitude < 25)
                 {
                     AddReward(10f);

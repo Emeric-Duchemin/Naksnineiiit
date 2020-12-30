@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -13,21 +13,22 @@ namespace MBaske.AngryAI
         public BodyWalker body;
         private float diam = 7f;
         public bool straight_line = false;
+        public int nb_win = 0;
 
         List<Vector3> positions = new List<Vector3>();
 
         public static float generateNormalRandom(float mu, float sigma)
         {
-            float rand1 = Random.Range(0.0f, 1.0f);
-            float rand2 = Random.Range(0.0f, 1.0f);
+            float rand1 = UnityEngine.Random.Range(0.0f, 1.0f);
+            float rand2 = UnityEngine.Random.Range(0.0f, 1.0f);
 
             float n = Mathf.Sqrt(-2.0f * Mathf.Log(rand1)) * Mathf.Cos((2.0f * Mathf.PI) * rand2);
 
             float res = (mu + sigma * n);
             while (res > mu + sigma && res < mu + sigma)
             {
-                rand1 = Random.Range(0.0f, 1.0f);
-                rand2 = Random.Range(0.0f, 1.0f);
+                rand1 = UnityEngine.Random.Range(0.0f, 1.0f);
+                rand2 = UnityEngine.Random.Range(0.0f, 1.0f);
 
                 n = Mathf.Sqrt(-2.0f * Mathf.Log(rand1)) * Mathf.Cos((2.0f * Mathf.PI) * rand2);
 
@@ -44,7 +45,6 @@ namespace MBaske.AngryAI
             {
                 if (File.Exists(Application.dataPath + @"\plot\"+fileList[i]))
                 {
-                    Debug.Log(Application.dataPath + @"/plot/" + fileList[i]);
                     File.Delete(Application.dataPath + @"/plot/" + fileList[i]);
                     //UnityEditor.AssetDatabase.Refresh();
                 }
@@ -52,7 +52,7 @@ namespace MBaske.AngryAI
             if (!straight_line)
             {
                 RandomizeTarget();
-                int nbObstacle = Random.Range(10, 20);
+                int nbObstacle = UnityEngine.Random.Range(10, 20);
                 for (int i = 0; i < nbObstacle; i++)
                 {
                     Vector3 v = new Vector3(generateNormalRandom(ground.transform.position.x, 25), -0.5f, generateNormalRandom(ground.transform.position.z, 25));
@@ -62,7 +62,6 @@ namespace MBaske.AngryAI
                         float d = (v - positions[j]).magnitude;
                         if (d > diam && d < (diam * 2))
                         {
-                            Debug.Log(d);
                             possible = false;
                         }
                     }
@@ -101,6 +100,7 @@ namespace MBaske.AngryAI
             Vector3 delta = target.position - body.transform.position;
             if (delta.sqrMagnitude < 25)
             {
+                nb_win++;
                 RandomizeTarget();
             }
         }
@@ -117,12 +117,18 @@ namespace MBaske.AngryAI
             bool possible = false;
             while (!possible)
             {
+                // Vector3 move = UnityEngine.Random.onUnitSphere;
+                // Vector3 pos = new Vector3(body.transform.position.x + move.x * move.z * (20 +  nb_win), 0, body.transform.position.z + move.y * move.z * (20 + nb_win));
+                // Debug.Log(pos);
                 Vector3 pos = Random.onUnitSphere * 40;
                 pos.y = 0;
+                // if(pos.x > ground.transform.position.x + 25 || pos.z > ground.transform.position.z + 25 || pos.x < ground.transform.position.x - 25 || pos.z < ground.transform.position.z - 25){
+                //     continue;
+                // }
                 for (int j = 0; j < positions.Count; j++)
                 {
-                    float d = (pos - positions[j]).magnitude;
-                    if (d < 10)
+                    float d = (pos + ground.transform.position - positions[j]).magnitude;
+                    if (d < 15)
                     {
                         continue;
                     }

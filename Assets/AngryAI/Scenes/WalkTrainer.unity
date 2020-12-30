@@ -485,6 +485,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1909090381}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &679380283 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6928247203248955059, guid: ccec90ddabc46204989cf753d95f618e,
+    type: 3}
+  m_PrefabInstance: {fileID: 731113710}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5b5788fcddd5144aecac2d1da0b4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,7 +666,7 @@ PrefabInstance:
         type: 3}
       propertyPath: body
       value: 
-      objectReference: {fileID: 1798174128}
+      objectReference: {fileID: 679380283}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: target
@@ -1209,6 +1221,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkTrainer
       objectReference: {fileID: 0}
+    - target: {fileID: 154626333988512584, guid: ccec90ddabc46204989cf753d95f618e,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 8c0c3c133a8ee554fa2aa416e9347115,
+        type: 3}
     - target: {fileID: 4572156136424843723, guid: ccec90ddabc46204989cf753d95f618e,
         type: 3}
       propertyPath: body

@@ -47,12 +47,12 @@ public class HealthBar : MonoBehaviour
 
     private void UpdateParams()
     {
-        meshRenderer.GetPropertyBlock(matBlock);
         if(fighter != null)
         {
+            meshRenderer.GetPropertyBlock(matBlock);
             matBlock.SetFloat("_Fill", (float)fighter.life / 10f);
+            meshRenderer.SetPropertyBlock(matBlock);
         }
-        meshRenderer.SetPropertyBlock(matBlock);
     }
 
     private void AlignCamera()
