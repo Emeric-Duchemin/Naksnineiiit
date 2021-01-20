@@ -7,7 +7,7 @@ namespace MBaske.AngryAI
     public class WalkTrainerA : Walker
     {
         [SerializeField]
-        private Transform target;
+        public Transform target;
         public override void InitializeAgent()
         {
             base.InitializeAgent();
@@ -32,27 +32,35 @@ namespace MBaske.AngryAI
                 base.reward = 0f;
                 if (body.transform.rotation.eulerAngles.x >= 100 && body.transform.rotation.eulerAngles.x <= 260 && (body.transform.rotation.eulerAngles.z <= 100 || body.transform.rotation.eulerAngles.z >= 260))//prevent to be upside down
                 {
-                    AddReward(-1f);
+                    AddReward(-5f);
                 }
                 if (body.transform.rotation.eulerAngles.z >= 100 && body.transform.rotation.eulerAngles.z <= 260 && (body.transform.rotation.eulerAngles.x <= 100 || body.transform.rotation.eulerAngles.x >= 260))//prevent to be upside down
                 {
-                    AddReward(-1f);
+                    AddReward(-5f);
                 }
                 // Minimize angle -> face walk direction.
-                base.reward_angle += -Mathf.Abs(normWalkDir);
-                base.reward += -Mathf.Abs(normWalkDir);
-                AddReward(-Mathf.Abs(normWalkDir));
+                
                 float speed = Vector3.Dot(body.VelocityXZ, dirXZ) * 0.1f;
-                Vector3 delt = target.position - this.transform.position;
                 RaycastHit hit;
                 Physics.Raycast(body.transform.position , body.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity);
                 //Debug.DrawRay(body.transform.position, body.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                if (hit.distance < 1 && hit.collider != null && hit.collider.gameObject.tag == "Wall")
+                if (hit.distance < 10 && hit.collider != null && hit.collider.gameObject.tag == "Wall")
                 {
-                    Debug.Log(hit.distance);
-                    AddReward(-0.1f);
+                    Vector3 deltaObject = hit.point - body.transform.position;
+                    Vector3 dirObjectXZ = Vector3.ProjectOnPlane(deltaObject, Vector3.up).normalized;
+                    float speedTowardObject = Vector3.Dot(body.VelocityXZ, dirObjectXZ) * 0.1f;
+                    AddReward(-speedTowardObject * 4);
+                    base.reward_angle += -Mathf.Abs(normWalkDir) * 0.5f;
+                    base.reward += -Mathf.Abs(normWalkDir) * 0.5f;
+                    AddReward(-Mathf.Abs(normWalkDir) * 0.5f);
                 }
-                if (delt.sqrMagnitude < 25)
+                else
+                {
+                    base.reward_angle += -Mathf.Abs(normWalkDir * 2);
+                    base.reward += -Mathf.Abs(normWalkDir * 2);
+                    AddReward(-Mathf.Abs(normWalkDir) * 2);
+                }
+                if (delta.sqrMagnitude < 25)
                 {
                     AddReward(10f);
                     base.reward_got_target += 10f;
